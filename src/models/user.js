@@ -77,7 +77,7 @@ userSchema.methods.toJSON = function () { //SHORTHAND FOR ABOVE - SEE USER.JS
 //METHODS ARE ACCESSIBLE IN SPECIFIC INSTANCE
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, /*`thisismynewcourse`*/process.env.JWT_TOKEN); //MOVED TO .ENV
+    const token = jwt.sign({ _id: user._id.toString() }, /*`thisismynewcourse`*/process.env.JWT_SECRET); //MOVED TO .ENV
     user.tokens = user.tokens.concat({ token });
     await user.save();
     return token;
